@@ -10,6 +10,7 @@ scripts = {
     "1": ("Default", "default.py"),
     "2": ("Visual", "visual.py"),
     "3": ("Batch", "fast.py"),
+    "4": ("Angles", "angles.py"),
 }
 
 # List of required packages for each script
@@ -17,6 +18,7 @@ dependencies = {
     "default.py": ["numpy"],
     "visual.py": ["numpy", "matplotlib"],
     "fast.py": ["numpy", "numba"],
+    "angles.py": ["numpy", "matplotlib"],
 }
 
 
