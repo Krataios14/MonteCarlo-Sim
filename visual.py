@@ -28,12 +28,21 @@ def generate_coin(x_center, y_center, theta):
 def coin_in_slot(coin_vertices, slot):
     x0, y0 = slot.get_xy()
     sw, sh = slot.get_width(), slot.get_height()
-    return np.all(
+    
+    # Check which vertices are within the slot
+    within_slot = (
         (coin_vertices[:, 0] >= x0)
         & (coin_vertices[:, 0] <= x0 + sw)
         & (coin_vertices[:, 1] >= y0)
         & (coin_vertices[:, 1] <= y0 + sh)
     )
+    
+    # Calculate the percentage of vertices inside the slot
+    percentage_in_slot = np.sum(within_slot) / len(coin_vertices)
+    
+    # Return True if the percentage meets or exceeds the threshold
+    return percentage_in_slot >= R_P
+
 
 
 # Simulation
@@ -57,8 +66,31 @@ def simulate(i):
     fall_through = False
     for slot in slots:
         if coin_in_slot(coin_vertices, slot):
+            # Slot turns green if the coin falls into it
+            ax.add_patch(
+                Rectangle(
+                    slot.get_xy(),
+                    slot.get_width(),
+                    slot.get_height(),
+                    edgecolor="red",
+                    facecolor="green",  # Slot becomes green
+                    alpha=0.5,
+                )
+            )
             fall_through = True
-            break
+        else:
+            # Default slot color
+            ax.add_patch(
+                Rectangle(
+                    slot.get_xy(),
+                    slot.get_width(),
+                    slot.get_height(),
+                    edgecolor="red",
+                    facecolor="yellow",  # Slot color is yellow
+                    alpha=0.5,
+                )
+            )
+
 
     # Draw grating
     ax.set_xlim(0, W)
