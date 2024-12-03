@@ -34,8 +34,15 @@ python3 main.py
 ```
 
 ## Config
+All config options for the angle simulation are in the `angles.py`.
 
-All config options are available in the `config.py` file.
+Open `angles.py` in a text editor to adjust simulation params:
+
+- `num_simulations`: Number of simulations to run.
+- `h_min`, `h_max`: Bounds for h
+- `o_min`, `o_max`: Bounds for o
+
+All config options for coin monte-carlo are available in the `config.py`.
 
 Open `config.py` in a text editor to adjust simulation params:
 
@@ -45,3 +52,6 @@ Open `config.py` in a text editor to adjust simulation params:
 - `slot_w`: Width of each slot.
 - `R`: Radius of the coin.
 - `S`: Number of sides to approximate the coin.
+- `R_P`: % of the coin that has to be over the slot to fall in
+
+
